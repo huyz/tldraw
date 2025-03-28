@@ -29,8 +29,8 @@ export interface Signal<Value, Diff = unknown> {
 	get(): Value
 
 	/**
-	 * The epoch when this signal's value last changed. Note tha this is not the same as when the value was last computed.
-	 * A signal may recopmute it's value without changing it.
+	 * The epoch when this signal's value last changed. Note that this is not the same as when the value was last computed.
+	 * A signal may recompute it's value without changing it.
 	 */
 	lastChangedEpoch: number
 	/**
@@ -54,7 +54,9 @@ export interface Child {
 	readonly parentSet: ArraySet<Signal<any, any>>
 	readonly parents: Signal<any, any>[]
 	readonly parentEpochs: number[]
+	readonly name: string
 	isActivelyListening: boolean
+	__debug_ancestor_epochs__: Map<Signal<any, any>, number> | null
 }
 
 /**
